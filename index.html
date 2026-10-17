@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Pulse Analytics — SaaS business intelligence and performance analytics dashboard.">
+  <meta name="theme-color" content="#f6f7f4">
+
+  <title>Overview | Pulse Analytics</title>
+
+  <!-- Pulse Analytics browser tab logo -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Libraries and application script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Pulse Analytics home">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span>pulse<span class="brand-light">analytics</span></span>
+    </a>
+
+    <p class="nav-label">WORKSPACE</p>
+
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="nav-link active" href="#overview" aria-current="page">
+        <span class="nav-icon" aria-hidden="true">◫</span>
+        Overview
+      </a>
+
+      <a class="nav-link" href="#analytics">
+        <span class="nav-icon" aria-hidden="true">▥</span>
+        Analytics
+      </a>
+
+      <a class="nav-link" href="#customers">
+        <span class="nav-icon" aria-hidden="true">♙</span>
+        Customers
+      </a>
+
+      <a class="nav-link" href="#transactions">
+        <span class="nav-icon" aria-hidden="true">⇄</span>
+        Transactions
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="workspace-card">
+        <span class="workspace-dot" aria-hidden="true"></span>
+        <div>
+          <strong>Pulse Workspace</strong>
+          <small>India · SaaS Analytics</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main dashboard -->
+  <main class="main-content" id="overview">
+
+    <!-- Header -->
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">WORKSPACE / OVERVIEW</p>
+        <h1>Dashboard overview</h1>
+        <p class="page-subtitle">
+          Monitor revenue, subscriptions and customer performance.
+        </p>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="live-indicator">Analytics overview</span>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-pressed="false"
+        >
+          ◐ <span>Dark mode</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- KPI cards -->
+    <section class="kpi-grid" aria-label="Business performance">
+
+      <article class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Monthly revenue</span>
+          <span class="kpi-icon" aria-hidden="true">₹</span>
+        </div>
+        <p class="kpi-value">₹24.86L</p>
+        <div class="kpi-bottom">
+          <span class="trend">↑ 12.8%</span>
+          <span>vs. previous month</span>
+        </div>
+      </article>
+
+      <article class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Active customers</span>
+          <span class="kpi-icon" aria-hidden="true">♙</span>
+        </div>
+        <p class="kpi-value">8,549</p>
+        <div class="kpi-bottom">
+          <span class="trend">↑ 8.2%</span>
+          <span>vs. previous month</span>
+        </div>
+      </article>
+
+      <article class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Subscriptions</span>
+          <span class="kpi-icon" aria-hidden="true">▤</span>
+        </div>
+        <p class="kpi-value">2,430</p>
+        <div class="kpi-bottom">
+          <span class="trend">↑ 5.4%</span>
+          <span>vs. previous month</span>
+        </div>
+      </article>
+
+      <article class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Monthly churn</span>
+          <span class="kpi-icon" aria-hidden="true">↘</span>
+        </div>
+        <p class="kpi-value">2.4%</p>
+        <div class="kpi-bottom">
+          <span class="trend">↓ 0.6 pp</span>
+          <span>vs. previous month</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Analytics charts -->
+    <section class="chart-grid" id="analytics">
+
+      <article class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Revenue overview</h2>
+            <p class="panel-description">
+              Compare revenue and expenses over time
+            </p>
+          </div>
+
+          <select
+            class="chart-select"
+            id="periodSelect"
+            aria-label="Chart time period"
+          >
+            <option value="week">This week</option>
+            <option value="month" selected>This month</option>
+            <option value="year">Last 6 months</option>
+          </select>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas
+            id="revenueChart"
+            role="img"
+            aria-label="Revenue and expenses over the selected period"
+          ></canvas>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Subscription plans</h2>
+            <p class="panel-description">
+              Distribution of subscriptions by plan
+            </p>
+          </div>
+        </div>
+
+        <div class="donut-wrap">
+          <canvas
+            id="subscriptionChart"
+            role="img"
+            aria-label="Subscription plan distribution"
+          ></canvas>
+        </div>
+
+        <div class="chart-legend">
+          <div class="legend-row">
+            <span class="legend-name">
+              <span class="legend-dot starter-dot"></span>
+              Starter · ₹999/mo
+            </span>
+            <strong>52%</strong>
+          </div>
+
+          <div class="legend-row">
+            <span class="legend-name">
+              <span class="legend-dot pro-dot"></span>
+              Professional · ₹2,999/mo
+            </span>
+            <strong>33%</strong>
+          </div>
+
+          <div class="legend-row">
+            <span class="legend-name">
+              <span class="legend-dot enterprise-dot"></span>
+              Enterprise · ₹9,999/mo
+            </span>
+            <strong>15%</strong>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Transactions -->
+    <section
+      class="panel transactions-panel"
+      id="transactions"
+    >
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">Recent transactions</h2>
+          <p class="panel-description">
+            Review customer payments and transaction status
+          </p>
+        </div>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="table-actions">
+          <input
+            class="search-input"
+            id="transactionSearch"
+            type="search"
+            placeholder="Search customer, city or ID..."
+            aria-label="Search transactions"
+          >
+
+          <select
+            class="chart-select"
+            id="statusFilter"
+            aria-label="Filter transactions by status"
+          >
+            <option value="All">All statuses</option>
+            <option value="Paid">Paid</option>
+            <option value="Pending">Pending</option>
+            <option value="Refunded">Refunded</option>
+          </select>
+        </div>
+
+        <span
+          class="panel-description"
+          id="resultCount"
+          aria-live="polite"
+        ></span>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Customer</th>
+              <th scope="col">City</th>
+              <th scope="col">Transaction ID</th>
+              <th scope="col">Plan</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="transactionRows"></tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span id="pageInfo" aria-live="polite"></span>
+
+        <div class="table-actions">
+          <button type="button" id="prevPage">Previous</button>
+          <button type="button" id="nextPage">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customers navigation target -->
+    <section class="sr-only" id="customers">
+      <h2>Customers</h2>
+      <p>
+        Explore customer activity using the transaction search and status filters.
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Pulse Analytics</span>
+      <span>SaaS Business Intelligence Platform · INR</span>
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
